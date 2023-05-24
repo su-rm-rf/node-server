@@ -21,6 +21,18 @@ export default class TodoController {
       }
       res.push(todoDto)
     })
+    const cookie = ctx.cookies.get('request')
+    console.log('cookie from client', cookie)
+    ctx.cookies.set('response', todoList.length, {
+      // maxAge: Date.now(),
+      // signed: 'salt',
+      // expires: '',
+      // path: '/',
+      // domain: '',
+      // secure: true,
+      httpOnly: true,
+      // overwrite: false,
+    })
     utils.responseClient(ctx, constants.reqSuccess, '获取列表成功', res)
   }
   
